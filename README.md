@@ -1,1 +1,2 @@
-# hypderAGI-Ollama-Node
+# hypderAGI-AI-Node
+hypderAGI-AI-Node
