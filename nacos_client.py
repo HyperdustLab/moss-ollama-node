@@ -38,11 +38,17 @@ def register_service():
             response = client.add_naming_instance(
                 service_name, public_ip, port, metadata=metadata
             )
-            logging.info(f"Successfully registered with Nacos: {response}")
             return
         except Exception as e:
+            # 当注册失败时才输出详细日志
             logging.error(f"Registration attempt {attempt + 1} failed: {e}")
-            time.sleep(5)
+            logging.error(f"Failed registration details:")
+            logging.error(f"Service Name: {service_name}")
+            logging.error(f"Public IP: {public_ip}") 
+            logging.error(f"Port: {port}")
+            logging.error(f"Metadata: {metadata}")
+            logging.error(f"Nacos Server: {nacos_server}")
+
     raise RuntimeError("Failed to register with Nacos after several attempts")
 
 def send_heartbeat():
