@@ -3,8 +3,8 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # 安装基本依赖
-RUN apt-get update && \
-    apt-get install -y git && \
+RUN apt-get update --fix-missing && \
+    apt-get install -y --no-install-recommends git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
